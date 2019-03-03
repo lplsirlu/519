@@ -313,12 +313,14 @@
       }, 1000*60)
     },
     methods: {
-      tableRowClassName({row, rowIndex}){
-        if((rowIndex+1)%2 == 0){
+      tableRowClassName(row, rowIndex){
+        console.log(rowIndex)
+        if(rowIndex == 0){
           return 'even'
         }else {
           return 'odd'
         }
+        return ''
       },
       _Z() {
         this._GetThisDayPercent()
@@ -380,6 +382,7 @@
               }
             }
           })
+          console.log(this.midListTwo)
         }).catch(err => {
           console.log('当日工单信息错误' + err)
         })
@@ -406,7 +409,7 @@
               }
             }
           })
-          console.log(this.botLeftListTwo)
+          // console.log(this.botLeftListTwo)
         }).catch(err => {
           console.log('(左)设备信息有错误' + err)
         })
@@ -457,7 +460,7 @@
             top: 10
           },
           grid: {
-            left: '7%',
+            left: '11%',
             right: '7%',
             bottom: '15%',
           },
@@ -497,6 +500,9 @@
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              formatter: '{value}(个)',
+            },
             axisLine: {
               lineStyle: {
                 color: 'black'
@@ -531,6 +537,7 @@
                 typeof typs.GetYVal(5,pos)=='undefined'?0:typs.GetYVal(5,pos),
                 typeof typs.GetYVal(6,pos)=='undefined'?0:typs.GetYVal(6,pos),
                 typeof typs.GetYVal(7,pos)=='undefined'?0:typs.GetYVal(7,pos)],
+              // data: [10,20,30,50,60,90,99999],
               // output
               markPoint: {
                 data: [
@@ -586,7 +593,7 @@
             top: 10
           },
           grid: {
-            left: '7%',
+            left: '11%',
             right: '7%',
             bottom: '15%',
           },
@@ -626,6 +633,9 @@
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              formatter: '{value}(个)',
+            },
             axisLine: {
               lineStyle: {
                 color: 'black'
@@ -698,7 +708,7 @@
         let midCake = this.$echarts.init(document.getElementById('cake_info'))
         midCake.setOption({
           color:
-            ['#61A0A8', '#C23531', '#61a0a8', '#d48265',
+            ['#61A0A8', '#09A9A5', '#F43237', '#d48265',
               '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
           title: {
             text: '今日完成情况',
@@ -769,8 +779,12 @@
                 }
               },
               data: [
-                {value: pos.Completed, name: '已完成', textStyle: {color: '#abcdef'}},
-                {value: pos.Unfinished, name: '未完成'},
+                /*{value: pos.Completed, name: '已完成', textStyle: {color: '#abcdef'}},
+                {value: pos.Unfinished, name: '未完成'},*/
+                {value: Number(pos.Unfinished)+Number(pos.Completed), name: '已发放',
+                },
+                {value: pos.Completed, name: '已完成',  /*textStyle: {color: '#ffffff'}*/},
+                  {value: pos.Unfinished, name: '未完成', /*textStyle: {color: '#C23531'}*/},
               ],
               itemStyle: {
                 emphasis: {

@@ -84,9 +84,6 @@
           </el-table>
         </div>
       </div>
-      <div class="">
-
-      </div>
     </div>
   </div>
 </template>
@@ -235,6 +232,9 @@
           yAxis: [
             {
               type: 'value',
+              axisLabel: {
+                formatter: '{value}(个)',
+              },
               axisLine: {
                 lineStyle: {
                   color: 'black'
@@ -318,6 +318,9 @@
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              formatter: '{value}(个)',
+            },
             axisLine: {
               lineStyle: {
                 color: 'black'
@@ -588,6 +591,9 @@
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              formatter: '{value}(个)',
+            },
             axisLine: {
               lineStyle: {
                 color: 'black'
@@ -692,6 +698,9 @@
           },
           xAxis:  {
             type: 'value',
+            axisLabel: {
+              formatter: '{value}(个)',
+            },
             axisLine: {
               lineStyle:{
                 color: 'black'
